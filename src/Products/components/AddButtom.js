@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container, Section, Button, Level } from 'react-bulma-components';
 
-const AddButton = () => {
+const AddButtom = ({ onClick }) => {
     return(
         <Section>
             <Container>
                 <Level className='level-right'>
                     <div className='level-right'>
                         <div className='level-item'>
-                            <Button color="primary">Add</Button>
+                            <Button onClick={ onClick } color="primary" >Add</Button>
                         </div>
                     </div>
                 </Level>
@@ -17,4 +17,4 @@ const AddButton = () => {
     )
 }
 
-export default AddButton
+export default AddButtom

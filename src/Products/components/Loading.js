@@ -1,7 +1,7 @@
 import React from 'react';
 import { Loader } from 'react-bulma-components';
 
-const Loanding = () => {
+const Loading = () => {
     return (
         <div className='columns is-centered'>
             <Loader style={{
@@ -13,4 +13,4 @@ const Loanding = () => {
     )
 }
 
-export default Loanding
+export default Loading
