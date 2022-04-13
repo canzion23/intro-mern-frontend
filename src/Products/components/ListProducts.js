@@ -1,49 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Section, Container } from 'react-bulma-components';
+import React from 'react';
+import { Columns, Card, Content, Heading } from 'react-bulma-components';
 
-import { Loading } from './index';
-import { getProducts } from '../services';
-
-
-const ListProducts = () => {
-    const [isLoading, setIsLoading] = useState(true)    
-    const [products, setProducts] = useState([])    
-    
-    useEffect( () => {
-      async function loadProducts() {
-        const response = await getProducts()
-        
-        if (response.status === 200) {
-          setProducts(response.data.products)
-          console.log(response.data.products);
-        }
-    }
-
-    loadProducts()
-
-  }, [])
-
-  if (isLoading) {
-    <Loading />
-  }
-
-  if (!products.length) {
-    return (      
-      <Section>
-            <Container>
-                <h2 className='title has-text-centered'>You dont\'t have products</h2>
-            </Container>
-        </Section>
-      )
-  }
-
-    return (                    
-      <Section>
-            <Container>
-                <h2 className='title has-text-centered'>You have {products.length} products</h2>
-            </Container>
-        </Section>
-    )
+const ListProducts = ({ products }) => {
+  return (    
+        <Columns>
+        {
+          products.map(({ _id, name, size, unitaryPrice, description, imgUrl }) => (
+            <Columns.Column size={5}  key= {_id}>
+              <Card>
+                <Card.Image size="square" src={imgUrl} />
+                <Card.Content>
+                  <Content>
+                    <Heading>{name}</Heading>
+                    <Heading subtitle size={6}>Price: {unitaryPrice}</Heading>
+                    <p>
+                      {
+                        description
+                      }
+                    </p>
+                  </Content>
+                </Card.Content>
+              </Card>
+            </Columns.Column>
+          ))
+        }    
+        </Columns>
+  )
 }
 
-export default ListProducts
+export default ListProducts;
